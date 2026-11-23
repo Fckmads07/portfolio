@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { Icon } from './Icon'
 
 const links = [
@@ -11,7 +11,7 @@ const links = [
 export function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const { pathname } = useLocation()
+  const close = () => setOpen(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -19,9 +19,6 @@ export function Navbar() {
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
-
-  // Close the mobile menu whenever the route changes.
-  useEffect(() => setOpen(false), [pathname])
 
   useEffect(() => {
     if (!open) return
@@ -33,7 +30,7 @@ export function Navbar() {
   return (
     <header className={`nav${scrolled ? ' nav--scrolled' : ''}${open ? ' nav--open' : ''}`}>
       <nav className="container nav__inner" aria-label="Main">
-        <Link to="/" className="brand" aria-label="Madhav Ramdin — home">
+        <Link to="/" className="brand" aria-label="Madhav Ramdin — home" onClick={close}>
           <span className="brand__mark">
             <Icon name="terminal" />
           </span>
@@ -45,7 +42,7 @@ export function Navbar() {
         <ul className="nav__links" id="nav-links">
           {links.map((l) => (
             <li key={l.to}>
-              <NavLink to={l.to} end={l.end} className="nav__link">
+              <NavLink to={l.to} end={l.end} className="nav__link" onClick={close}>
                 {l.label}
               </NavLink>
             </li>

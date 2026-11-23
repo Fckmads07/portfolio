@@ -4,6 +4,8 @@ import { featuredProjects } from '../data/projects'
 import { Icon } from './Icon'
 import { SocialLinks } from './SocialLinks'
 
+const year = new Date().getFullYear()
+
 export function Footer() {
   return (
     <footer className="footer">
@@ -69,7 +71,7 @@ export function Footer() {
 
         <div className="footer__bottom">
           <span>
-            © {new Date().getFullYear()} {profile.name} · Built with React, TypeScript & Vite ·
+            © {year} {profile.name} · Built with React, TypeScript & Vite ·
             Design inspired by Parrot OS
           </span>
           <SocialLinks />
