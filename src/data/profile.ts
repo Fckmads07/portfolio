@@ -33,8 +33,8 @@ export interface Social {
  * Instagram profile URL. Leave empty to hide every Instagram link on the site.
  * Example: 'https://www.instagram.com/your_handle/'
  */
-const INSTAGRAM_URL = ''
-const INSTAGRAM_HANDLE = ''
+const INSTAGRAM_URL = 'https://www.instagram.com/madsimplement/'
+const INSTAGRAM_HANDLE = '@madsimplement'
 
 const allSocials: Social[] = [
   {
