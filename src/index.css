@@ -161,7 +161,7 @@ main {
 }
 
 .section {
-  padding: clamp(64px, 10vw, 112px) 0;
+  padding-block: clamp(64px, 10vw, 112px);
 }
 
 .section--tight {
@@ -704,7 +704,7 @@ a.pill:hover {
    Page hero (Projects / Experience)
    ========================================================================== */
 .page-hero {
-  padding: clamp(56px, 9vw, 104px) 0 clamp(24px, 4vw, 40px);
+  padding-block: clamp(56px, 9vw, 104px) clamp(24px, 4vw, 40px);
   text-align: center;
 }
 
