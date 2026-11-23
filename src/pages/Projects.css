@@ -1,0 +1,153 @@
+.projects-bar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+/* Edition-style tabs, like the Parrot OS download page */
+.tabs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(15, 10, 30, 0.7);
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.tab:hover {
+  color: var(--text);
+}
+
+.tab--active {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.tab--active:hover {
+  color: var(--bg);
+}
+
+.tab__count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 0.75rem;
+}
+
+.tab--active .tab__count {
+  background: rgba(10, 1, 24, 0.18);
+}
+
+@media (max-width: 560px) {
+  .tabs {
+    border-radius: var(--radius);
+  }
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.projects-grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 960px) {
+  .projects-grid--3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .projects-grid,
+  .projects-grid--3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lab-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  list-style: none;
+}
+
+.lab {
+  display: flex;
+  gap: 18px;
+  padding: 22px 24px;
+}
+
+.lab__code {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+}
+
+.lab h3 {
+  margin: 4px 0 6px;
+  font-size: 1.08rem;
+  font-weight: 700;
+}
+
+.lab p {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+@media (max-width: 760px) {
+  .lab-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: clamp(28px, 5vw, 44px);
+  border-color: var(--accent-line);
+  background:
+    radial-gradient(30rem 14rem at 100% 0%, rgba(0, 255, 240, 0.12), transparent 70%),
+    linear-gradient(135deg, rgba(6, 4, 62, 0.6), rgba(3, 35, 46, 0.6));
+}
+
+.cta h2 {
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 800;
+}
+
+.cta p {
+  margin-top: 6px;
+  color: var(--muted);
+}
