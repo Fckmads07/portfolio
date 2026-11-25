@@ -10,7 +10,6 @@ import {
   featuredProjects,
   netsecLabs,
   otherProjects,
-  repoTaglines,
   type Category,
   type Project,
 } from '../data/projects'
@@ -208,7 +207,7 @@ function AllRepos() {
                   {own?.name ?? repo.name}
                   {isNew(repo) && <span className="listing__new">new</span>}
                 </span>
-                <span className="listing__desc">{own?.tagline || repoTaglines[repo.name] || repo.description || 'No description yet.'}</span>
+                <span className="listing__desc">{own?.tagline || repo.description || 'No description yet.'}</span>
                 <span className="listing__lang">
                   {repo.language && (
                     <>

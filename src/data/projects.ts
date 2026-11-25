@@ -256,8 +256,3 @@ export const categoryHue: Record<Category, string> = {
   Backend: 'yellow',
   Web: 'blue',
 }
-
-/** Taglines for repos that have no project entry above, shown instead of the GitHub description. */
-export const repoTaglines: Record<string, string> = {
-  portfolio: 'This site: networking & security portfolio, synced from GitHub every two days.',
-}
