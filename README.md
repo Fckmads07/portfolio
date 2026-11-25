@@ -1,6 +1,8 @@
 # Madhav Ramdin · Portfolio
 
-My personal portfolio website. I'm a Computer Science student (DEC, 3rd semester) at Cégep Marie-Victorin in Montréal, focused on networking, systems, backend and embedded development.
+**Live site: [madhav-ramdin-portfolio.vercel.app](https://madhav-ramdin-portfolio.vercel.app)**
+
+My personal portfolio website. I'm a Computer Science student (DEC, 3rd semester) at Cégep Marie-Victorin in Montréal, focused on networking and cybersecurity.
 
 Built around what I care about most: **networking and cybersecurity**. The pages borrow from the tools of the trade (a `whois` card, an `nmap` scan of my skills, a `traceroute` through my history), and the hobbies section covers cars, swimming and the gym. The look (monospace, sharp corners, pixel art, dithered background) is inspired by [German Viter's portfolio](https://germanviter.github.io/) and [Omarchy](https://omarchy.org).
 
