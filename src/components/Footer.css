@@ -1,0 +1,112 @@
+.footer {
+  position: relative;
+  border-top: 1px solid var(--line);
+  background: var(--bg-raised);
+  color: var(--fg-dim);
+  font-size: 13px;
+}
+
+.footer__inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 14px 24px;
+  align-items: center;
+  max-width: calc(var(--page) + var(--gutter) * 2);
+  margin: 0 auto;
+  padding: 28px var(--gutter) 36px;
+}
+
+.footer__keys {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer__sep {
+  margin: 0 6px;
+}
+
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+}
+
+.footer__link {
+  color: var(--fg-soft);
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 3px;
+  transition:
+    color 0.15s ease-out,
+    text-decoration-color 0.15s ease-out;
+}
+
+.footer__link:hover {
+  color: var(--accent);
+  text-decoration-color: currentColor;
+}
+
+.footer__note {
+  grid-column: 1 / -1;
+}
+
+.footer__note + .footer__note {
+  margin-top: -10px;
+}
+
+/* A dashed lane on the footer's top edge, with a pixel car driving along it. */
+.footer__road {
+  position: absolute;
+  inset: -30px 0 auto;
+  height: 30px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.footer__road::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 4px;
+  left: 0;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, var(--line-strong) 0 14px, transparent 14px 28px);
+}
+
+.footer__car {
+  position: absolute;
+  bottom: 3px;
+  left: 0;
+  animation: cruise 18s steps(120, end) infinite;
+}
+
+@keyframes cruise {
+  from {
+    transform: translateX(-48px);
+  }
+  to {
+    transform: translateX(100vw);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer__car {
+    left: 24px;
+    animation: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .footer__inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Key hints mean nothing without a keyboard. */
+@media (hover: none) {
+  .footer__keys {
+    display: none;
+  }
+}

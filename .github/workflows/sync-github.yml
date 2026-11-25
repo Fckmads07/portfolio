@@ -1,0 +1,43 @@
+name: Sync GitHub data
+
+# Every two days, pull my repos, languages and contribution graph into
+# src/data/github.json and commit it. The push makes Vercel rebuild the site.
+on:
+  schedule:
+    # 07:17 UTC on odd days of the month (1, 3, 5 … 31), i.e. every two days.
+    - cron: '17 7 */2 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-github
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Fetch GitHub data
+        run: node scripts/sync-github.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit the snapshot
+        run: |
+          if git diff --quiet -- src/data/github.json; then
+            echo "Nothing changed."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add src/data/github.json
+          git commit -m "Sync GitHub data"
+          git push

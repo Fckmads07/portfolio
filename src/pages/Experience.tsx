@@ -1,162 +1,137 @@
 import { Link } from 'react-router-dom'
-import { Icon } from '../components/Icon'
+import { Prompt, SectionHead } from '../components/Prompt'
 import { jobs } from '../data/experience'
-import { profile, socials } from '../data/profile'
+import { profile, socialById } from '../data/profile'
+import { PixelText } from '../pixel/PixelText'
+import { Sprite } from '../pixel/Sprite'
 import './Experience.css'
 
-const current = jobs.find((j) => j.current)
+const current = jobs.find((job) => job.current)
 
 export default function Experience() {
-  const contact = socials.filter((s) => s.id === 'linkedin' || s.id === 'gmail')
+  const linkedin = socialById('linkedin')
+  const gmail = socialById('gmail')
 
   return (
     <>
-      <section className="page-hero container fade-up">
-        <span className="eyebrow">~/experience</span>
-        <h1>
-          Work <span className="accent">experience</span>
+      <header className="page-head">
+        <Prompt dir="~/experience" command="cat jobs.log" />
+        <h1 className="page-head__title">
+          <span className="sr-only">Experience</span>
+          <PixelText text="EXPERIENCE" shadow tracking={2} animate />
         </h1>
-        <p>
-          Where I've worked so far — the jobs that taught me teamwork, responsibility and how to
-          learn fast.
+        <p className="page-head__lead">
+          Where I've worked so far — the jobs that taught me teamwork, responsibility and how to learn fast.
         </p>
-        <ul className="chips">
-          {current ? (
-            <li className="chip chip--accent">
-              Now: {current.role} @ {current.company}
-            </li>
-          ) : null}
-          <li className="chip">{jobs.length} positions</li>
-          <li className="chip">{profile.availability}</li>
-        </ul>
-      </section>
+      </header>
 
-      <section className="section section--tight container">
-        <div className="xp-layout">
-          <ol className="xp-list">
+      <section className="section" aria-labelledby="jobs-title">
+        <SectionHead dir="~/experience" command="systemctl status 'job@*'" title="Work experience" id="jobs-title" />
+
+        <div className="xp">
+          <ol className="jobs">
             {jobs.map((job) => (
-              <li key={job.slug}>
-                <article className={`card xp${job.current ? ' xp--current' : ''}`} id={job.slug}>
-                  <header className="xp__head">
-                    <span className="icon-badge">
-                      <Icon name={job.icon} />
-                    </span>
-                    <div className="xp__title">
-                      <h2>{job.role}</h2>
-                      <p>
-                        {job.company} <span aria-hidden="true">·</span> {job.location}
-                      </p>
-                    </div>
-                    {job.current ? (
-                      <span className="xp__badge">
-                        <span className="status-dot" aria-hidden="true" /> Current
-                      </span>
-                    ) : null}
-                  </header>
+              <li className="job window" id={job.slug} key={job.slug}>
+                <div className="window__bar">
+                  <span className={`state${job.current ? ' state--on' : ''}`}>
+                    <span className="dot" aria-hidden="true" />
+                    {job.current ? 'active (running)' : 'inactive (exited)'}
+                  </span>
+                  <span className="window__meta">
+                    {job.start} → {job.end}
+                  </span>
+                </div>
 
-                  <dl className="xp__meta">
-                    <div>
-                      <dt>
-                        <Icon name="calendar" /> Period
-                      </dt>
-                      <dd>
-                        {job.start} – {job.end}
-                      </dd>
-                    </div>
-                    <div>
-                      <dt>
-                        <Icon name="briefcase" /> Type
-                      </dt>
-                      <dd>{job.type}</dd>
-                    </div>
-                    <div>
-                      <dt>
-                        <Icon name="mapPin" /> Location
-                      </dt>
-                      <dd>{job.location}</dd>
-                    </div>
-                  </dl>
-
-                  <p className="xp__summary">{job.summary}</p>
-
-                  <h3 className="xp__subhead">What I did</h3>
-                  <ul className="xp__duties">
-                    {job.duties.map((d) => (
-                      <li key={d}>
-                        <Icon name="check" />
-                        {d}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <ul className="chips" aria-label="Skills">
-                    {job.skills.map((s) => (
-                      <li className="chip chip--accent" key={s}>
-                        {s}
-                      </li>
-                    ))}
-                  </ul>
-                </article>
+                <div className="window__body job__body">
+                  <Sprite name={job.sprite} hue={job.current ? 'peach' : 'blue'} size={56} className="job__sprite" />
+                  <div className="job__main">
+                    <h3 className="job__role">{job.role}</h3>
+                    <p className="job__company">
+                      {job.company} <span aria-hidden="true">·</span> {job.location}{' '}
+                      <span aria-hidden="true">·</span> {job.type.toLowerCase()}
+                    </p>
+                    <p className="job__summary">{job.summary}</p>
+                    <ul className="plus-list job__duties">
+                      {job.duties.map((duty) => (
+                        <li key={duty}>{duty}</li>
+                      ))}
+                    </ul>
+                    <ul className="tags" aria-label="Skills">
+                      {job.skills.map((skill) => (
+                        <li className="tag" key={skill}>
+                          {skill}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </li>
             ))}
           </ol>
 
-          <aside className="xp-aside">
-            <div className="card aside-card">
-              <h2>At a glance</h2>
-              <dl className="kv">
+          <aside className="xp__aside">
+            <div className="window">
+              <div className="window__bar">
+                <span className="window__title">whoami</span>
+              </div>
+              <dl className="window__body kv">
                 <div>
-                  <dt>Currently</dt>
+                  <dt>currently</dt>
                   <dd>{current ? `${current.role}, ${current.company}` : '—'}</dd>
                 </div>
                 <div>
-                  <dt>Studying</dt>
+                  <dt>studying</dt>
                   <dd>
                     {profile.program}, {profile.semester}
                   </dd>
                 </div>
                 <div>
-                  <dt>School</dt>
+                  <dt>school</dt>
                   <dd>{profile.school}</dd>
                 </div>
                 <div>
-                  <dt>Based in</dt>
+                  <dt>based in</dt>
                   <dd>{profile.location}</dd>
                 </div>
               </dl>
             </div>
 
-            <div className="card aside-card aside-card--accent">
-              <span className="status-dot" aria-hidden="true" />
-              <h2>Looking for an intern?</h2>
-              <p>
-                I'm looking for an internship starting <strong>Summer 2027</strong> in networking,
-                systems or backend development.
-              </p>
-              <div className="aside-actions">
-                {contact.map((s) => (
-                  <a
-                    key={s.id}
-                    href={s.href}
-                    className={`btn btn--sm ${s.id === 'linkedin' ? 'btn--primary' : 'btn--ghost'}`}
-                    {...(s.href.startsWith('http') ? { target: '_blank', rel: 'noreferrer' } : {})}
-                  >
-                    <Icon name={s.icon} /> {s.label}
-                  </a>
-                ))}
+            <div className="next window" aria-labelledby="next-title">
+              <div className="window__bar">
+                <span className="state state--queued">
+                  <span className="dot" aria-hidden="true" />
+                  queued
+                </span>
+                <span className="window__meta">Summer 2027</span>
+              </div>
+              <div className="window__body">
+                <h2 className="next__title" id="next-title">
+                  Looking for an intern?
+                </h2>
+                <p className="next__text">
+                  I'm looking for an internship starting <strong>Summer 2027</strong> in networking, IT
+                  infrastructure or cybersecurity. The{' '}
+                  <Link className="link" to="/projects">
+                    projects page
+                  </Link>{' '}
+                  shows what I can do.
+                </p>
+                <div className="next__actions">
+                  {linkedin && (
+                    <a className="btn btn--primary btn--sm" href={linkedin.href} target="_blank" rel="noreferrer">
+                      <Sprite name="linkedin" size={14} />
+                      LinkedIn
+                    </a>
+                  )}
+                  {gmail && (
+                    <a className="btn btn--sm" href={gmail.href}>
+                      <Sprite name="mail" size={14} />
+                      Email me
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
-
-            <Link to="/projects" className="card card--interactive aside-link">
-              <span className="icon-badge">
-                <Icon name="code" />
-              </span>
-              <span>
-                <strong>See what I build</strong>
-                <span>Projects, labs and experiments</span>
-              </span>
-              <Icon name="arrowRight" className="aside-link__arrow" />
-            </Link>
           </aside>
         </div>
       </section>

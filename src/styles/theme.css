@@ -1,0 +1,171 @@
+/*
+ * Color themes. Every theme fills the same palette slots, then the role block
+ * at the bottom maps those slots to --bg, --fg, --accent and friends.
+ * Components use the roles, so switching themes only changes <html data-theme>.
+ */
+
+/* NOC (the default): deep navy, like a network operations dashboard, with a cyan accent. */
+:root,
+:root[data-theme='noc'] {
+  color-scheme: dark;
+  --red: #f87171;
+  --peach: #fb923c;
+  --yellow: #facc15;
+  --green: #4ade80;
+  --teal: #2dd4bf;
+  --sky: #38bdf8;
+  --blue: #60a5fa;
+  --mauve: #a78bfa;
+  --pink: #f472b6;
+  --cyan: #22d3ee;
+  --cyan-soft: #67e8f9;
+  --text: #e3e9f3;
+  --subtext1: #c3cee0;
+  --subtext0: #a3b1c8;
+  --overlay1: #7b8aa5;
+  --overlay0: #5a6a86;
+  --surface2: #34425e;
+  --surface1: #26324a;
+  --surface0: #1a2438;
+  --base: #0b1120;
+  --mantle: #0e1628;
+  --crust: #070b14;
+}
+
+/* SOC: a near-black console with phosphor-green text, like a security operations center. */
+:root[data-theme='soc'] {
+  color-scheme: dark;
+  --red: #f87171;
+  --peach: #fdba74;
+  --yellow: #fde047;
+  --green: #4ade80;
+  --teal: #5eead4;
+  --sky: #7dd3fc;
+  --blue: #86efac;
+  --mauve: #bef264;
+  --pink: #f9a8d4;
+  --cyan: #4ade80;
+  --cyan-soft: #86efac;
+  --text: #d8eadd;
+  --subtext1: #bcd3c3;
+  --subtext0: #9db8a6;
+  --overlay1: #6f8f7b;
+  --overlay0: #4f6b5a;
+  --surface2: #2e4236;
+  --surface1: #213027;
+  --surface0: #16201a;
+  --base: #090d0a;
+  --mantle: #0d130f;
+  --crust: #050806;
+}
+
+/* Red team: charcoal with a signal-red accent. */
+:root[data-theme='red-team'] {
+  color-scheme: dark;
+  --red: #f87171;
+  --peach: #fb923c;
+  --yellow: #fbbf24;
+  --green: #86efac;
+  --teal: #5eead4;
+  --sky: #7dd3fc;
+  --blue: #fca5a5;
+  --mauve: #f9a8d4;
+  --pink: #fb7185;
+  --cyan: #f87171;
+  --cyan-soft: #fca5a5;
+  --text: #ede3e7;
+  --subtext1: #d4c3ca;
+  --subtext0: #b9a3ad;
+  --overlay1: #8f7782;
+  --overlay0: #6e5862;
+  --surface2: #47343d;
+  --surface1: #33252c;
+  --surface0: #241a1f;
+  --base: #110d10;
+  --mantle: #160f13;
+  --crust: #0a0709;
+}
+
+/* Daylight: a clean light theme for reading, with a deep teal accent. */
+:root[data-theme='daylight'] {
+  color-scheme: light;
+  --red: #b91c1c;
+  --peach: #c2410c;
+  --yellow: #a16207;
+  --green: #15803d;
+  --teal: #0f766e;
+  --sky: #0369a1;
+  --blue: #1d4ed8;
+  --mauve: #6d28d9;
+  --pink: #be185d;
+  --cyan: #0e7490;
+  --cyan-soft: #0891b2;
+  --text: #0f172a;
+  --subtext1: #334155;
+  --subtext0: #475569;
+  --overlay1: #64748b;
+  --overlay0: #8693a6;
+  --surface2: #aab6c6;
+  --surface1: #c5cfdc;
+  --surface0: #dde4ed;
+  --base: #f6f8fb;
+  --mantle: #eef2f7;
+  --crust: #e2e8f0;
+}
+
+/* Parrot: the purple-black and cyan look this site started with. */
+:root[data-theme='parrot'] {
+  color-scheme: dark;
+  --red: #ff5c8a;
+  --peach: #ffa65c;
+  --yellow: #ffe066;
+  --green: #5cffa1;
+  --teal: #00fff0;
+  --sky: #5ce1ff;
+  --blue: #4d9fff;
+  --mauve: #b48cff;
+  --pink: #ff7ad9;
+  --cyan: #00fff0;
+  --cyan-soft: #8af4ff;
+  --text: #e8eef8;
+  --subtext1: #c9d3e3;
+  --subtext0: #a9b6cc;
+  --overlay1: #8799b5;
+  --overlay0: #5d6a85;
+  --surface2: #3d3358;
+  --surface1: #2a2142;
+  --surface0: #1c1430;
+  --base: #0a0118;
+  --mantle: #0f0a1e;
+  --crust: #06010f;
+}
+
+/* Roles. Components use these, and only reach for a raw hue when they want one. */
+:root {
+  --bg: var(--base);
+  --bg-raised: var(--mantle);
+  --bg-sunken: var(--crust);
+  --line: var(--surface0);
+  --line-strong: var(--surface1);
+  --fg: var(--text);
+  --fg-soft: var(--subtext0);
+  --fg-dim: var(--overlay1);
+  --accent: var(--cyan);
+  --accent-alt: var(--blue);
+  --accent-hover: var(--cyan-soft);
+  --on-accent: var(--crust);
+
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Code', Menlo, Consolas, monospace;
+  --font-sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --page: 1120px;
+  --gutter: clamp(16px, 4vw, 32px);
+  --bar-h: 48px;
+}
+
+/* On a light base, small pale text needs more contrast. */
+:root[data-theme='daylight'] {
+  --fg-soft: var(--subtext1);
+  --fg-dim: var(--subtext0);
+  --on-accent: #ffffff;
+}

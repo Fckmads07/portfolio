@@ -1,18 +1,26 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="noc">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0A0118" />
+    <meta name="theme-color" content="#0b1120" />
     <meta
       name="description"
-      content="Madhav Ramdin — Computer Science student at Cégep Marie-Victorin in Montréal, focused on networking, systems, backend and embedded development."
+      content="Madhav Ramdin — Computer Science student at Cégep Marie-Victorin in Montréal, focused on networking and cybersecurity."
     />
+    <script>
+      // Apply the saved theme before first paint, so there is no flash of the default.
+      try {
+        var theme = localStorage.getItem('theme')
+        var known = ['noc', 'soc', 'red-team', 'daylight', 'parrot']
+        if (known.indexOf(theme) !== -1) document.documentElement.dataset.theme = theme
+      } catch (error) {}
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <title>Madhav Ramdin · Portfolio</title>

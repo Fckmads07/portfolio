@@ -1,153 +1,306 @@
-.projects-bar {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 32px;
-}
-
-/* Edition-style tabs, like the Parrot OS download page */
-.tabs {
-  display: inline-flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 6px;
-  padding: 6px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: rgba(15, 10, 30, 0.7);
-}
-
-.tab {
+.category {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  min-height: 40px;
-  padding: 0 16px;
-  border: 0;
-  border-radius: 999px;
-  background: transparent;
-  color: var(--muted);
-  font-family: inherit;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    color 0.2s ease,
-    background-color 0.2s ease;
+  font-size: 12px;
+  white-space: nowrap;
 }
 
-.tab:hover {
-  color: var(--text);
-}
+/* ---------- filters ---------- */
 
-.tab--active {
-  background: var(--accent);
-  color: var(--bg);
-}
-
-.tab--active:hover {
-  color: var(--bg);
-}
-
-.tab__count {
-  display: inline-grid;
-  place-items: center;
-  min-width: 22px;
-  height: 22px;
-  padding: 0 6px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  font-size: 0.75rem;
-}
-
-.tab--active .tab__count {
-  background: rgba(10, 1, 24, 0.18);
-}
-
-@media (max-width: 560px) {
-  .tabs {
-    border-radius: var(--radius);
-  }
-}
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
-}
-
-.projects-grid--3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-@media (max-width: 960px) {
-  .projects-grid--3 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 760px) {
-  .projects-grid,
-  .projects-grid--3 {
-    grid-template-columns: 1fr;
-  }
-}
-
-.lab-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-  list-style: none;
-}
-
-.lab {
+.filters {
   display: flex;
-  gap: 18px;
-  padding: 22px 24px;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
 }
 
-.lab__code {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  color: var(--accent);
+.filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--line-strong);
+  background: var(--bg);
+  color: var(--fg-soft);
+  font-size: 13px;
+  transition:
+    background-color 0.15s ease-out,
+    border-color 0.15s ease-out,
+    color 0.15s ease-out;
 }
 
-.lab h3 {
-  margin: 4px 0 6px;
-  font-size: 1.08rem;
+.filter:hover {
+  border-color: var(--accent);
+  color: var(--fg);
+}
+
+.filter[aria-pressed='true'] {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--on-accent);
   font-weight: 700;
 }
 
-.lab p {
-  color: var(--muted);
-  font-size: 0.92rem;
+.filter__count {
+  color: var(--fg-dim);
+  font-size: 11px;
 }
 
-@media (max-width: 760px) {
-  .lab-grid {
+.filter[aria-pressed='true'] .filter__count {
+  color: inherit;
+  opacity: 0.7;
+}
+
+/* ---------- project windows ---------- */
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.project__body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.project__head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.project__name {
+  font-size: 18px;
+}
+
+.project__tagline {
+  color: var(--fg-soft);
+  font-size: 13px;
+}
+
+.project__desc {
+  font-size: 14px;
+}
+
+.project__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+}
+
+.project__period {
+  color: var(--fg-dim);
+}
+
+.project__links {
+  display: flex;
+  gap: 16px;
+  margin-left: auto;
+}
+
+.project__link {
+  color: var(--accent-alt);
+  font-size: 13px;
+  font-weight: 600;
+  transition: color 0.15s ease-out;
+}
+
+.project__link:hover {
+  color: var(--accent);
+}
+
+.project__private {
+  color: var(--fg-dim);
+  font-style: italic;
+}
+
+@media (max-width: 860px) {
+  .projects {
     grid-template-columns: 1fr;
   }
 }
 
-.cta {
+/* ---------- every repo, like `ls -lt` ---------- */
+
+.listing li + li {
+  border-top: 1px solid var(--line);
+}
+
+.listing__row {
+  display: grid;
+  grid-template-columns: 14ch 26ch minmax(0, 1fr) 13ch 2ch;
+  gap: 4px 20px;
+  align-items: baseline;
+  padding: 12px 20px;
+  font-size: 14px;
+  transition: background-color 0.15s ease-out;
+}
+
+.listing__row:hover {
+  background: var(--bg-raised);
+}
+
+.listing__date {
+  color: var(--fg-dim);
+  font-size: 13px;
+}
+
+.listing__name {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  color: var(--accent-alt);
+  font-weight: 700;
+}
+
+.listing__new {
+  padding: 0 5px;
+  background: var(--green);
+  color: var(--on-accent);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.listing__desc {
+  color: var(--fg-soft);
+  font-family: var(--font-sans);
+}
+
+.listing__lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--fg-dim);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.listing__arrow {
+  color: var(--fg-dim);
+  transition:
+    color 0.15s ease-out,
+    transform 0.15s ease-out;
+}
+
+.listing__row:hover .listing__arrow {
+  color: var(--accent);
+  transform: translate(2px, -2px);
+}
+
+@media (max-width: 860px) {
+  .listing__row {
+    grid-template-columns: minmax(0, 1fr) 2ch;
+    padding: 14px 16px;
+  }
+
+  .listing__date,
+  .listing__name,
+  .listing__desc,
+  .listing__lang {
+    grid-column: 1;
+  }
+
+  .listing__arrow {
+    grid-column: 2;
+    grid-row: 1;
+  }
+}
+
+/* ---------- network & security labs ---------- */
+
+.netsec {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.netsec__body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+}
+
+.netsec__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.netsec__title {
+  font-size: 19px;
+}
+
+.netsec__text {
+  margin-top: 6px;
+  color: var(--fg-soft);
+  font-size: 14px;
+}
+
+@media (max-width: 860px) {
+  .netsec {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- coursework ---------- */
+
+.lab {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.lab__body {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.lab__title {
+  color: var(--fg);
+  font-size: 16px;
+}
+
+.lab__text {
+  margin-top: 6px;
+  color: var(--fg-soft);
+  font-size: 14px;
+}
+
+@media (max-width: 760px) {
+  .lab {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- see everything ---------- */
+
+.remote__body {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  padding: clamp(28px, 5vw, 44px);
-  border-color: var(--accent-line);
-  background:
-    radial-gradient(30rem 14rem at 100% 0%, rgba(0, 255, 240, 0.12), transparent 70%),
-    linear-gradient(135deg, rgba(6, 4, 62, 0.6), rgba(3, 35, 46, 0.6));
+  gap: 20px;
+  padding: 28px;
 }
 
-.cta h2 {
-  font-size: clamp(1.4rem, 3vw, 1.9rem);
-  font-weight: 800;
+.remote__title {
+  font-size: 20px;
 }
 
-.cta p {
-  margin-top: 6px;
-  color: var(--muted);
+.remote__text {
+  margin-top: 4px;
+  color: var(--fg-soft);
 }

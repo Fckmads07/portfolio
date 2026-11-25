@@ -1,11 +1,15 @@
 import { useEffect } from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
+import { Bar } from './components/Bar'
 import { Footer } from './components/Footer'
-import { Navbar } from './components/Navbar'
+import { WORKSPACES } from './data/nav'
+import { useHotkeys } from './hooks/useHotkeys'
+import { useTheme } from './hooks/useTheme'
 import Experience from './pages/Experience'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import Projects from './pages/Projects'
+import { PixelField } from './pixel/PixelField'
 
 const titles: Record<string, string> = {
   '/': 'Madhav Ramdin · Portfolio',
@@ -26,20 +30,28 @@ function useRouteEffects() {
         return
       }
     }
-    window.scrollTo(0, 0)
+    window.scrollTo({ top: 0, behavior: 'instant' })
   }, [pathname, hash])
 }
 
 export default function App() {
+  const { theme, setTheme, cycle } = useTheme()
+  const navigate = useNavigate()
   useRouteEffects()
 
+  useHotkeys({
+    ...Object.fromEntries(WORKSPACES.map((workspace) => [workspace.key, () => navigate(workspace.to)])),
+    t: cycle,
+  })
+
   return (
-    <>
+    <div className="shell">
       <a href="#main" className="skip-link">
         Skip to content
       </a>
-      <Navbar />
-      <main id="main">
+      <PixelField theme={theme} />
+      <Bar theme={theme} onSelectTheme={setTheme} />
+      <main className="page" id="main" tabIndex={-1}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
@@ -48,6 +60,6 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
-    </>
+    </div>
   )
 }

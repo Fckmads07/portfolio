@@ -1,81 +1,53 @@
-import { Link } from 'react-router-dom'
+import { formatDate, github } from '../data/github'
 import { profile, socials } from '../data/profile'
-import { featuredProjects } from '../data/projects'
-import { Icon } from './Icon'
-import { SocialLinks } from './SocialLinks'
+import { Sprite } from '../pixel/Sprite'
+import './Footer.css'
 
-const year = new Date().getFullYear()
+const YEAR = new Date().getFullYear()
 
 export function Footer() {
   return (
     <footer className="footer">
-      <div className="container">
-        <div className="footer__top">
-          <div className="footer__brand">
-            <Link to="/" className="brand">
-              <span className="brand__mark">
-                <Icon name="terminal" />
-              </span>
-              <span>{profile.name}</span>
-            </Link>
-            <p>
-              {profile.title} at {profile.school}. {profile.tagline}
-            </p>
-            <Link to="/projects" className="btn btn--primary btn--sm">
-              See my projects <Icon name="arrowRight" />
-            </Link>
-          </div>
-
-          <div className="footer__col">
-            <h3>Pages</h3>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/projects">Projects</Link>
-              </li>
-              <li>
-                <Link to="/experience">Experience</Link>
-              </li>
-            </ul>
-          </div>
-
-          <div className="footer__col">
-            <h3>Projects</h3>
-            <ul>
-              {featuredProjects.slice(0, 4).map((p) => (
-                <li key={p.slug}>
-                  <Link to={`/projects#${p.slug}`}>{p.name}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="footer__col">
-            <h3>Contact</h3>
-            <ul>
-              {socials.map((s) => (
-                <li key={s.id}>
-                  <a
-                    href={s.href}
-                    {...(s.href.startsWith('http') ? { target: '_blank', rel: 'noreferrer' } : {})}
-                  >
-                    {s.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        <div className="footer__bottom">
-          <span>
-            © {year} {profile.name} · Built with React, TypeScript & Vite ·
-            Design inspired by Parrot OS
+      <div className="footer__road" aria-hidden="true">
+        <Sprite name="car" hue="red" size={36} className="footer__car" />
+      </div>
+      <div className="footer__inner">
+        <p className="footer__keys">
+          <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> switch workspace
+          <span className="footer__sep" aria-hidden="true">
+            ·
           </span>
-          <SocialLinks />
-        </div>
+          <kbd>t</kbd> next theme
+        </p>
+
+        <ul className="footer__links">
+          {socials.map((social) => (
+            <li key={social.id}>
+              <a
+                className="footer__link"
+                href={social.href}
+                {...(social.href.startsWith('mailto:') ? {} : { target: '_blank', rel: 'noreferrer' })}
+              >
+                {social.label.toLowerCase()}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <p className="footer__note">
+          GitHub data synced {formatDate(github.syncedAt)}, automatically every two days.
+        </p>
+        <p className="footer__note">
+          © {YEAR} {profile.name}. Built with React, TypeScript and Vite. Look inspired by{' '}
+          <a className="footer__link" href="https://germanviter.github.io/" target="_blank" rel="noreferrer">
+            German Viter's site
+          </a>{' '}
+          and{' '}
+          <a className="footer__link" href="https://omarchy.org" target="_blank" rel="noreferrer">
+            Omarchy
+          </a>
+          .
+        </p>
       </div>
     </footer>
   )

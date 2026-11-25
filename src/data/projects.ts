@@ -1,4 +1,4 @@
-import type { IconName } from '../components/Icon'
+import type { SpriteName } from '../pixel/sprites'
 
 export type Category = 'Embedded' | 'Full-stack' | 'Backend' | 'Web'
 
@@ -17,7 +17,7 @@ export interface Project {
   highlights: string[]
   stack: string[]
   category: Category
-  icon: IconName
+  sprite: SpriteName
   period: string
   status?: 'In progress'
   links: ProjectLink[]
@@ -34,7 +34,7 @@ export const featuredProjects: Project[] = [
   {
     slug: 'chronoalarme',
     name: 'ChronoAlarme',
-    repoName: 'Esp-32-alarme',
+    repoName: 'Esp-32-Radio',
     tagline: 'Standalone stopwatch, timer and alarm clock on an ESP32.',
     description:
       'My final project for the Embedded Platform Programming course: a self-contained device written in MicroPython that works as a stopwatch, a countdown timer and an alarm clock, with its own display and real audio output.',
@@ -45,10 +45,10 @@ export const featuredProjects: Project[] = [
     ],
     stack: ['MicroPython', 'ESP32', 'I2C', 'I2S'],
     category: 'Embedded',
-    icon: 'cpu',
+    sprite: 'cpu',
     period: 'Fall 2026',
     status: 'In progress',
-    links: [gh('Esp-32-alarme')],
+    links: [gh('Esp-32-Radio')],
   },
   {
     slug: 'cryptotrack',
@@ -64,7 +64,7 @@ export const featuredProjects: Project[] = [
     ],
     stack: ['React', 'Vite', 'Python', 'FastAPI'],
     category: 'Full-stack',
-    icon: 'layers',
+    sprite: 'layers',
     period: 'Spring 2026',
     links: [
       gh('CryptoTrack'),
@@ -85,7 +85,7 @@ export const featuredProjects: Project[] = [
     ],
     stack: ['HTML', 'CSS', 'JavaScript', 'Canvas'],
     category: 'Web',
-    icon: 'calendar',
+    sprite: 'clock',
     period: 'Winter 2026',
     links: [gh('Timer')],
   },
@@ -102,7 +102,7 @@ export const featuredProjects: Project[] = [
     ],
     stack: ['Java', 'REST'],
     category: 'Backend',
-    icon: 'server',
+    sprite: 'server',
     period: 'Fall 2026',
     status: 'In progress',
     links: [],
@@ -121,7 +121,7 @@ export const featuredProjects: Project[] = [
     ],
     stack: ['MicroPython', 'ESP32', 'GPIO', 'PWM', 'ADC'],
     category: 'Embedded',
-    icon: 'wrench',
+    sprite: 'wrench',
     period: 'Fall 2026',
     links: [
       gh('Programmation-De-Plateforme'),
@@ -142,7 +142,7 @@ export const featuredProjects: Project[] = [
     ],
     stack: ['React', 'Vite', 'Imgflip API'],
     category: 'Web',
-    icon: 'sparkles',
+    sprite: 'sparkles',
     period: 'Spring 2026',
     links: [gh('Meme_generator')],
   },
@@ -159,7 +159,7 @@ export const otherProjects: Project[] = [
     highlights: [],
     stack: ['HTML', 'CSS'],
     category: 'Web',
-    icon: 'globe',
+    sprite: 'globe',
     period: 'Winter 2026',
     links: [gh('Exploration-monde')],
   },
@@ -172,7 +172,7 @@ export const otherProjects: Project[] = [
     highlights: [],
     stack: ['HTML', 'CSS'],
     category: 'Web',
-    icon: 'shield',
+    sprite: 'shield',
     period: 'Winter 2026',
     links: [gh('Login-Form')],
   },
@@ -185,38 +185,79 @@ export const otherProjects: Project[] = [
     highlights: [],
     stack: ['HTML', 'CSS', 'JavaScript'],
     category: 'Web',
-    icon: 'calendar',
+    sprite: 'clock',
     period: 'Fall 2026',
     links: [gh('Age_calculator')],
   },
 ]
 
-/** Coursework that lives in private repositories (no public links). */
-export const coursework: { code: string; title: string; text: string; icon: IconName }[] = [
+export interface Course {
+  code: string
+  title: string
+  text: string
+  sprite: SpriteName
+  hue: string
+  highlights?: string[]
+}
+
+/** Network and security coursework: the work closest to what I want to do. Private repos. */
+export const netsecLabs: Course[] = [
   {
     code: '420-312',
     title: 'Network Design',
-    text: 'OSI/TCP-IP, Linux networking (ip, nmcli, Netplan), VLSM subnetting, static routing and NAT in Cisco Packet Tracer.',
-    icon: 'network',
+    text: 'Designing and configuring small networks end to end, from the models to the router configs.',
+    sprite: 'router',
+    hue: 'cyan',
+    highlights: [
+      'OSI and TCP/IP models',
+      'Linux networking with ip, nmcli and Netplan',
+      'VLSM subnetting and addressing plans',
+      'Static routing and NAT in Cisco Packet Tracer',
+    ],
   },
   {
     code: '420-313',
     title: 'Security Incident Investigation',
-    text: 'Analysing web server, application, security and DNS logs from a compromised PHP/MariaDB customer portal.',
-    icon: 'shield',
+    text: 'Investigating an attack on a compromised PHP/MariaDB customer portal, working only from its logs.',
+    sprite: 'radar',
+    hue: 'green',
+    highlights: [
+      'Web server and application logs',
+      'Security and DNS logs',
+      'Following an attacker through the evidence',
+    ],
   },
+]
+
+/** Other coursework that lives in private repositories (no public links). */
+export const coursework: Course[] = [
   {
     code: 'DS&A',
     title: 'Data Structures & Algorithms',
     text: 'Linked lists, stacks, queues, hashing, trees, graphs and sorting in Java, Python and C.',
-    icon: 'code',
+    sprite: 'code',
+    hue: 'mauve',
   },
   {
     code: 'OOP',
     title: 'Banking System in Java',
     text: 'Console app with customers and checking, savings, student and business accounts: deposits, withdrawals and transfers.',
-    icon: 'briefcase',
+    sprite: 'briefcase',
+    hue: 'peach',
   },
 ]
 
 export const categories: ('All' | Category)[] = ['All', 'Embedded', 'Full-stack', 'Backend', 'Web']
+
+/** Palette slot for each category's label and dot. */
+export const categoryHue: Record<Category, string> = {
+  Embedded: 'green',
+  'Full-stack': 'mauve',
+  Backend: 'yellow',
+  Web: 'blue',
+}
+
+/** Taglines for repos that have no project entry above, shown instead of the GitHub description. */
+export const repoTaglines: Record<string, string> = {
+  portfolio: 'This site: networking & security portfolio, synced from GitHub every two days.',
+}

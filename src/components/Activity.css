@@ -1,0 +1,115 @@
+.activity {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 12px;
+  align-items: stretch;
+}
+
+.activity__scroll {
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.activity__svg {
+  max-width: none;
+}
+
+.activity__label {
+  fill: var(--fg-dim);
+  font-family: var(--font-mono);
+  font-size: 9px;
+}
+
+.activity__cell--0 {
+  fill: var(--line);
+  background: var(--line);
+}
+
+.activity__cell--1 {
+  fill: color-mix(in srgb, var(--accent) 30%, var(--bg));
+  background: color-mix(in srgb, var(--accent) 30%, var(--bg));
+}
+
+.activity__cell--2 {
+  fill: color-mix(in srgb, var(--accent) 55%, var(--bg));
+  background: color-mix(in srgb, var(--accent) 55%, var(--bg));
+}
+
+.activity__cell--3 {
+  fill: color-mix(in srgb, var(--accent) 78%, var(--bg));
+  background: color-mix(in srgb, var(--accent) 78%, var(--bg));
+}
+
+.activity__cell--4 {
+  fill: var(--accent);
+  background: var(--accent);
+}
+
+.activity__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 20px;
+  margin-top: 14px;
+  font-size: 13px;
+}
+
+.activity__caption {
+  color: var(--fg-soft);
+}
+
+.activity__caption strong {
+  color: var(--accent);
+}
+
+.activity__legend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--fg-dim);
+  font-size: 11px;
+}
+
+.activity__legend i {
+  display: block;
+  width: 10px;
+  height: 10px;
+}
+
+.langbar {
+  display: flex;
+  height: 12px;
+  overflow: hidden;
+  background: var(--line);
+}
+
+.langbar span {
+  display: block;
+  height: 100%;
+}
+
+.langlist {
+  display: grid;
+  gap: 6px;
+  margin-top: 18px;
+  font-size: 13px;
+}
+
+.langlist li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.langlist__pct {
+  margin-left: auto;
+  color: var(--fg-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 900px) {
+  .activity {
+    grid-template-columns: 1fr;
+  }
+}

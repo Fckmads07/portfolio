@@ -1,4 +1,4 @@
-import type { IconName } from '../components/Icon'
+import type { SpriteName } from '../pixel/sprites'
 
 export const profile = {
   name: 'Madhav Ramdin',
@@ -10,11 +10,11 @@ export const profile = {
   semester: '3rd semester',
   location: 'Montréal, QC',
   availability: 'Open to Summer 2027 internships',
-  tagline: 'From the network layer up to the API.',
+  tagline: 'Networks, security and the systems in between.',
   intro:
-    "I'm a Computer Science student at Cégep Marie-Victorin in Montréal, in the 3rd semester of my DEC. I'm interested in networking, systems and backend development, and I like building projects that show me how software and infrastructure work end to end — from the network layer up to the API.",
-  /** Words cycled by the typing effect in the home hero. */
-  focus: ['networks.', 'systems.', 'backend APIs.', 'embedded devices.', 'the web.'],
+    "I'm a Computer Science student at Cégep Marie-Victorin in Montréal, in the 3rd semester of my DEC. What pulls me in is networking and cybersecurity: designing networks, understanding how traffic moves through them, and learning how systems get attacked — and how to defend them.",
+  /** Words cycled by the typing effect in the home hero, after "Focused on". */
+  focus: ['networks.', 'cybersecurity.', 'Linux systems.', 'routing & NAT.', 'incident response.'],
   languages: ['French', 'English'],
 }
 
@@ -25,7 +25,9 @@ export interface Social {
   label: string
   handle: string
   href: string
-  icon: IconName
+  sprite: SpriteName
+  /** Palette slot used for the icon and hover color. */
+  hue: string
   blurb: string
 }
 
@@ -42,7 +44,8 @@ const allSocials: Social[] = [
     label: 'LinkedIn',
     handle: 'in/madhav-ramdin',
     href: 'https://www.linkedin.com/in/madhav-ramdin-241a06377/',
-    icon: 'linkedin',
+    sprite: 'linkedin',
+    hue: 'cyan',
     blurb: 'The best way to reach me — internships, projects and opportunities.',
   },
   {
@@ -50,7 +53,8 @@ const allSocials: Social[] = [
     label: 'Gmail',
     handle: 'm.ramdin07@gmail.com',
     href: 'mailto:m.ramdin07@gmail.com',
-    icon: 'mail',
+    sprite: 'mail',
+    hue: 'peach',
     blurb: 'Drop me an email and I will get back to you.',
   },
   {
@@ -58,7 +62,8 @@ const allSocials: Social[] = [
     label: 'Instagram',
     handle: INSTAGRAM_HANDLE,
     href: INSTAGRAM_URL,
-    icon: 'instagram',
+    sprite: 'instagram',
+    hue: 'pink',
     blurb: 'A look at life outside the terminal.',
   },
   {
@@ -66,7 +71,8 @@ const allSocials: Social[] = [
     label: 'GitHub',
     handle: '@Fckmads07',
     href: 'https://github.com/Fckmads07',
-    icon: 'github',
+    sprite: 'github',
+    hue: 'mauve',
     blurb: 'Every project, lab and experiment I push.',
   },
 ]
@@ -74,64 +80,132 @@ const allSocials: Social[] = [
 /** Only the socials that have a link configured. */
 export const socials = allSocials.filter((s) => s.href !== '')
 
-/** What kind of developer Madhav is — shown as "Why Madhav?" tiles. */
-export const traits: { icon: IconName; title: string; text: string }[] = [
+export const socialById = (id: SocialId) => socials.find((s) => s.id === id)
+
+/** The big "M" next to the whois card on the home page. */
+export const fetchLogo = [
+  '##          ##',
+  '###        ###',
+  '####      ####',
+  '## ##    ## ##',
+  '##  ##  ##  ##',
+  '##   ####   ##',
+  '##    ##    ##',
+  '##          ##',
+  '##          ##',
+  '##          ##',
+]
+
+export interface FetchRow {
+  /** "Group.Detail" keys are drawn with the detail in a second color. */
+  key: string
+  value: string
+}
+
+/** Rows of the `whois` card, in groups split by a little space. */
+export const fetchGroups: FetchRow[][] = [
+  [
+    { key: 'Name', value: 'Madhav Ramdin' },
+    { key: 'Location', value: 'Montréal, QC' },
+    { key: 'School', value: 'Cégep Marie-Victorin' },
+    { key: 'Program', value: 'DEC in Computer Science, 3rd semester' },
+    { key: 'Status', value: 'open to Summer 2027 internships' },
+  ],
+  [
+    { key: 'Focus.Main', value: 'networking, cybersecurity' },
+    { key: 'Focus.Also', value: 'Linux systems, embedded devices' },
+    { key: 'Languages.Spoken', value: 'French, English' },
+  ],
+  [{ key: 'Offline', value: 'cars, swimming, the gym' }],
+]
+
+/** What kind of person Madhav is — shown as "Why Madhav?" tiles. */
+export const traits: { sprite: SpriteName; hue: string; title: string; text: string }[] = [
   {
-    icon: 'layers',
-    title: 'End-to-end',
-    text: 'I want to understand the whole stack, from packets to endpoints.',
+    sprite: 'router',
+    hue: 'cyan',
+    title: 'Network-first',
+    text: 'Subnets, routing tables and NAT are where I am most at home. I like knowing exactly where every packet goes.',
   },
   {
-    icon: 'cpu',
-    title: 'Hands-on',
-    text: 'I learn by building — boards, wires and code on the same desk.',
+    sprite: 'shield',
+    hue: 'green',
+    title: 'Security-minded',
+    text: 'I have traced an attack on a compromised server through its logs, and I want to keep learning how to defend systems.',
   },
   {
-    icon: 'network',
-    title: 'Systems-minded',
-    text: 'Networks, Linux and VMs are where I like to dig in.',
+    sprite: 'server',
+    hue: 'blue',
+    title: 'Systems',
+    text: 'Linux, virtual machines and the command line: I like setting things up and seeing how they run.',
   },
   {
-    icon: 'users',
+    sprite: 'users',
+    hue: 'peach',
     title: 'Team player',
     text: 'I lead a team at work: reliable, punctual and calm under rush.',
   },
   {
-    icon: 'sparkles',
-    title: 'Always learning',
-    text: 'Three semesters in, and every one of them shipped new projects.',
+    sprite: 'dumbbell',
+    hue: 'yellow',
+    title: 'Disciplined',
+    text: 'The gym and the pool taught me consistency: show up, track progress, repeat. I bring the same habit to my studies.',
   },
 ]
 
-export const stats: { value: string; label: string; text: string }[] = [
+/** Life outside the terminal, shown like processes in `ps`. Edit freely. */
+export const hobbies: {
+  sprite: SpriteName
+  hue: string
+  process: string
+  title: string
+  text: string
+  tags: string[]
+}[] = [
   {
-    value: '19',
-    label: 'Repositories',
-    text: 'Projects, labs and experiments pushed to GitHub since July 2025.',
+    sprite: 'car',
+    hue: 'red',
+    process: 'cars',
+    title: 'Cars',
+    text: 'I love cars — the engineering under the hood as much as the design. A car is a system of systems, a bit like a network.',
+    tags: ['engines', 'design', 'motorsport'],
   },
   {
-    value: '3rd',
-    label: 'Semester',
-    text: 'of my DEC in Computer Science at Cégep Marie-Victorin.',
+    sprite: 'swim',
+    hue: 'sky',
+    process: 'swim',
+    title: 'Swimming',
+    text: 'In the pool it is just me, the lane and the clock. Swimming keeps me calm and focused.',
+    tags: ['endurance', 'technique'],
   },
   {
-    value: '6',
-    label: 'Languages',
-    text: 'Python, Java, JavaScript, SQL, C and Bash — and counting.',
+    sprite: 'dumbbell',
+    hue: 'yellow',
+    process: 'gym',
+    title: 'The gym',
+    text: 'Strength training is how I reset after a day of labs. Progress comes from showing up, every week.',
+    tags: ['strength', 'consistency'],
   },
 ]
 
-export const techStack: { area: string; icon: IconName; items: string[] }[] = [
-  { area: 'Languages', icon: 'code', items: ['Python', 'Java', 'JavaScript', 'SQL'] },
+/**
+ * The toolbox, drawn as an `nmap -sV` scan: each skill area is an "open port".
+ * Ports match the area (53 is DNS, 514 is syslog, 22 is SSH, 8266 is the ESP OTA port…).
+ */
+export const techStack: { port: string; service: string; hue: string; items: string[] }[] = [
   {
-    area: 'Networking',
-    icon: 'network',
-    items: ['Network design', 'VLSM & subnetting', 'Static routing', 'NAT', 'Cisco Packet Tracer'],
+    port: '53/tcp',
+    service: 'networking',
+    hue: 'cyan',
+    items: ['Network design', 'OSI / TCP-IP', 'VLSM & subnetting', 'Static routing', 'NAT', 'Cisco Packet Tracer'],
   },
-  { area: 'Systems', icon: 'server', items: ['Linux', 'Bash', 'VMware'] },
-  { area: 'Web', icon: 'globe', items: ['React', 'Vite', 'FastAPI', 'HTML', 'CSS'] },
-  { area: 'Databases & Tools', icon: 'wrench', items: ['MySQL', 'Git', 'GitHub'] },
-  { area: 'Embedded', icon: 'cpu', items: ['MicroPython', 'ESP32', 'Arduino', 'Raspberry Pi'] },
+  { port: '514/udp', service: 'security', hue: 'green', items: ['Log analysis', 'Incident investigation', 'Web & DNS logs'] },
+  { port: '22/tcp', service: 'systems', hue: 'blue', items: ['Linux', 'ip / nmcli / Netplan', 'Bash', 'VMware'] },
+  { port: '8266/tcp', service: 'embedded', hue: 'teal', items: ['MicroPython', 'ESP32', 'Arduino', 'Raspberry Pi'] },
+  { port: '3306/tcp', service: 'databases', hue: 'yellow', items: ['MySQL', 'SQL'] },
+  { port: '8080/tcp', service: 'code', hue: 'mauve', items: ['Python', 'Java', 'JavaScript', 'C'] },
+  { port: '443/tcp', service: 'web', hue: 'peach', items: ['React', 'Vite', 'FastAPI', 'HTML', 'CSS'] },
+  { port: '9418/tcp', service: 'git', hue: 'pink', items: ['Git', 'GitHub'] },
 ]
 
 export interface Milestone {
@@ -139,6 +213,7 @@ export interface Milestone {
   title: string
   text: string
   tags: string[]
+  /** Where I am now; it gets the HEAD marker. Entries after it are plans. */
   current?: boolean
 }
 
@@ -177,14 +252,14 @@ export const history: Milestone[] = [
   {
     date: 'Fall 2026 · Session 3',
     title: 'Down to the hardware and the network',
-    text: 'Network design in Packet Tracer (VLSM, static routing, NAT), embedded programming with MicroPython on the ESP32, and security incident investigation. Now building ChronoAlarme and a turn-based RPG REST API in Java.',
-    tags: ['Networking', 'ESP32', 'Security'],
+    text: 'Network design in Packet Tracer (VLSM, static routing, NAT), investigating a security incident from server and DNS logs, and embedded programming with MicroPython on the ESP32.',
+    tags: ['Networking', 'Security', 'ESP32'],
     current: true,
   },
   {
     date: 'Summer 2027',
     title: 'Next: my first internship',
-    text: 'I am looking for an internship starting Summer 2027 in networking, systems or backend development.',
+    text: 'I am looking for an internship starting Summer 2027 in networking, IT infrastructure or cybersecurity.',
     tags: ['Open to work'],
   },
 ]

@@ -1,4 +1,4 @@
-import type { IconName } from '../components/Icon'
+import type { SpriteName } from '../pixel/sprites'
 
 export interface Job {
   slug: string
@@ -9,7 +9,7 @@ export interface Job {
   end: string
   current?: boolean
   type: string
-  icon: IconName
+  sprite: SpriteName
   summary: string
   duties: string[]
   skills: string[]
@@ -26,7 +26,7 @@ export const jobs: Job[] = [
     end: 'Present',
     current: true,
     type: 'Employment',
-    icon: 'users',
+    sprite: 'cookie',
     summary:
       'Leading a team in a fast-paced environment, following procedures and standards and staying reliable on every shift.',
     duties: [
@@ -46,7 +46,7 @@ export const jobs: Job[] = [
     start: 'Jun 30, 2025',
     end: 'Aug 1, 2025',
     type: 'Internship',
-    icon: 'code',
+    sprite: 'code',
     summary:
       'A summer internship where I learned the foundations of computing and programming — the starting point of my path as a developer.',
     duties: [
