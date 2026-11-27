@@ -4,7 +4,7 @@ import { Prompt, SectionHead } from '../components/Prompt'
 import { Socials } from '../components/Socials'
 import { Typewriter } from '../components/Typewriter'
 import { ago, formatDate, github, languageShare, repoByName, repos } from '../data/github'
-import { fetchGroups, fetchLogo, history, hobbies, profile, socialById, techStack, traits } from '../data/profile'
+import { fetchGroups, history, hobbies, profile, socialById, techStack, traits } from '../data/profile'
 import { categoryHue, featuredProjects } from '../data/projects'
 import { Icon } from '../icons/Icon'
 import './Home.css'
@@ -65,9 +65,9 @@ function Whois() {
       <div className="window__body fetch__body">
         <Prompt command="whois madhav-ramdin" />
         <div className="fetch__grid">
-          <pre className="fetch__logo" aria-hidden="true">
-            {fetchLogo.join('\n')}
-          </pre>
+          <span className="fetch__mark" aria-hidden="true">
+            MR
+          </span>
           <div className="fetch__info">
             {fetchGroups.map((group) => (
               <dl className="fetch__group" key={group[0].key}>

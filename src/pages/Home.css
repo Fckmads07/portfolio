@@ -105,12 +105,26 @@
   margin-top: 16px;
 }
 
-.fetch__logo {
-  color: var(--accent);
+/* The same MR mark as the Applications menu, at full size. */
+.fetch__mark {
+  display: grid;
+  place-items: center;
+  width: 136px;
+  aspect-ratio: 1;
+  max-width: 100%;
+  align-self: start;
+  margin-top: 4px;
+  border-radius: 20px;
+  background: var(--accent-fill);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, white 14%, transparent),
+    0 18px 40px -16px color-mix(in srgb, var(--accent) 60%, transparent);
+  color: var(--on-accent);
   font-family: var(--font-mono);
-  font-size: 15px;
+  font-size: 54px;
   font-weight: 700;
-  line-height: 1.25;
+  letter-spacing: -0.04em;
+  line-height: 1;
 }
 
 .fetch__info {
@@ -160,8 +174,10 @@
     grid-template-columns: 1fr;
   }
 
-  .fetch__logo {
-    font-size: 11px;
+  .fetch__mark {
+    width: 72px;
+    border-radius: 12px;
+    font-size: 28px;
   }
 
   .fetch__row {

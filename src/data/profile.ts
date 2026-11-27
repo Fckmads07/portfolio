@@ -83,19 +83,6 @@ export const socials = allSocials.filter((s) => s.href !== '')
 export const socialById = (id: SocialId) => socials.find((s) => s.id === id)
 
 /** The big "M" next to the whois card on the home page. */
-export const fetchLogo = [
-  '##          ##',
-  '###        ###',
-  '####      ####',
-  '## ##    ## ##',
-  '##  ##  ##  ##',
-  '##   ####   ##',
-  '##    ##    ##',
-  '##          ##',
-  '##          ##',
-  '##          ##',
-]
-
 export interface FetchRow {
   /** "Group.Detail" keys are drawn with the detail in a second color. */
   key: string
