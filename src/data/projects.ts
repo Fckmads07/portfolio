@@ -1,4 +1,4 @@
-import type { SpriteName } from '../pixel/sprites'
+import type { IconName } from '../icons/icons'
 
 export type Category = 'Embedded' | 'Full-stack' | 'Backend' | 'Web'
 
@@ -17,7 +17,7 @@ export interface Project {
   highlights: string[]
   stack: string[]
   category: Category
-  sprite: SpriteName
+  icon: IconName
   period: string
   status?: 'In progress'
   links: ProjectLink[]
@@ -45,7 +45,7 @@ export const featuredProjects: Project[] = [
     ],
     stack: ['MicroPython', 'ESP32', 'I2C', 'I2S'],
     category: 'Embedded',
-    sprite: 'cpu',
+    icon: 'cpu',
     period: 'Fall 2026',
     status: 'In progress',
     links: [gh('Esp-32-Radio')],
@@ -64,7 +64,7 @@ export const featuredProjects: Project[] = [
     ],
     stack: ['React', 'Vite', 'Python', 'FastAPI'],
     category: 'Full-stack',
-    sprite: 'layers',
+    icon: 'layers',
     period: 'Spring 2026',
     links: [
       gh('CryptoTrack'),
@@ -85,7 +85,7 @@ export const featuredProjects: Project[] = [
     ],
     stack: ['HTML', 'CSS', 'JavaScript', 'Canvas'],
     category: 'Web',
-    sprite: 'clock',
+    icon: 'clock',
     period: 'Winter 2026',
     links: [gh('Timer')],
   },
@@ -102,7 +102,7 @@ export const featuredProjects: Project[] = [
     ],
     stack: ['Java', 'REST'],
     category: 'Backend',
-    sprite: 'server',
+    icon: 'server',
     period: 'Fall 2026',
     status: 'In progress',
     links: [],
@@ -121,7 +121,7 @@ export const featuredProjects: Project[] = [
     ],
     stack: ['MicroPython', 'ESP32', 'GPIO', 'PWM', 'ADC'],
     category: 'Embedded',
-    sprite: 'wrench',
+    icon: 'wrench',
     period: 'Fall 2026',
     links: [
       gh('Programmation-De-Plateforme'),
@@ -142,7 +142,7 @@ export const featuredProjects: Project[] = [
     ],
     stack: ['React', 'Vite', 'Imgflip API'],
     category: 'Web',
-    sprite: 'sparkles',
+    icon: 'sparkles',
     period: 'Spring 2026',
     links: [gh('Meme_generator')],
   },
@@ -159,7 +159,7 @@ export const otherProjects: Project[] = [
     highlights: [],
     stack: ['HTML', 'CSS'],
     category: 'Web',
-    sprite: 'globe',
+    icon: 'globe',
     period: 'Winter 2026',
     links: [gh('Exploration-monde')],
   },
@@ -172,7 +172,7 @@ export const otherProjects: Project[] = [
     highlights: [],
     stack: ['HTML', 'CSS'],
     category: 'Web',
-    sprite: 'shield',
+    icon: 'shield',
     period: 'Winter 2026',
     links: [gh('Login-Form')],
   },
@@ -185,7 +185,7 @@ export const otherProjects: Project[] = [
     highlights: [],
     stack: ['HTML', 'CSS', 'JavaScript'],
     category: 'Web',
-    sprite: 'clock',
+    icon: 'clock',
     period: 'Fall 2026',
     links: [gh('Age_calculator')],
   },
@@ -195,7 +195,7 @@ export interface Course {
   code: string
   title: string
   text: string
-  sprite: SpriteName
+  icon: IconName
   hue: string
   highlights?: string[]
 }
@@ -206,7 +206,7 @@ export const netsecLabs: Course[] = [
     code: '420-312',
     title: 'Network Design',
     text: 'Designing and configuring small networks end to end, from the models to the router configs.',
-    sprite: 'router',
+    icon: 'router',
     hue: 'cyan',
     highlights: [
       'OSI and TCP/IP models',
@@ -219,7 +219,7 @@ export const netsecLabs: Course[] = [
     code: '420-313',
     title: 'Security Incident Investigation',
     text: 'Investigating an attack on a compromised PHP/MariaDB customer portal, working only from its logs.',
-    sprite: 'radar',
+    icon: 'radar',
     hue: 'green',
     highlights: [
       'Web server and application logs',
@@ -235,14 +235,14 @@ export const coursework: Course[] = [
     code: 'DS&A',
     title: 'Data Structures & Algorithms',
     text: 'Linked lists, stacks, queues, hashing, trees, graphs and sorting in Java, Python and C.',
-    sprite: 'code',
+    icon: 'code',
     hue: 'mauve',
   },
   {
     code: 'OOP',
     title: 'Banking System in Java',
     text: 'Console app with customers and checking, savings, student and business accounts: deposits, withdrawals and transfers.',
-    sprite: 'briefcase',
+    icon: 'briefcase',
     hue: 'peach',
   },
 ]

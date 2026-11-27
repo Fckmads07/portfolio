@@ -4,7 +4,7 @@ import { formatShort, github } from '../data/github'
 import { WORKSPACES } from '../data/nav'
 import { socialById } from '../data/profile'
 import type { ThemeId } from '../data/themes'
-import { Sprite } from '../pixel/Sprite'
+import { Icon } from '../icons/Icon'
 import { AppMenu } from './AppMenu'
 import { ThemeMenu } from './ThemeMenu'
 import './Bar.css'
@@ -80,7 +80,7 @@ export function Bar({ theme, onSelectTheme, onReboot }: BarProps) {
           <ThemeMenu theme={theme} onSelect={onSelectTheme} />
           {githubLink && (
             <a className="bar__icon" href={githubLink.href} target="_blank" rel="noreferrer" aria-label="GitHub profile" title="GitHub">
-              <Sprite name="github" size={18} />
+              <Icon name="github" size={18} />
             </a>
           )}
           {linkedin && (

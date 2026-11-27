@@ -1,4 +1,4 @@
-import type { SpriteName } from '../pixel/sprites'
+import type { IconName } from '../icons/icons'
 
 export const profile = {
   name: 'Madhav Ramdin',
@@ -25,7 +25,7 @@ export interface Social {
   label: string
   handle: string
   href: string
-  sprite: SpriteName
+  icon: IconName
   /** Palette slot used for the icon and hover color. */
   hue: string
   blurb: string
@@ -44,7 +44,7 @@ const allSocials: Social[] = [
     label: 'LinkedIn',
     handle: 'in/madhav-ramdin',
     href: 'https://www.linkedin.com/in/madhav-ramdin-241a06377/',
-    sprite: 'linkedin',
+    icon: 'linkedin',
     hue: 'cyan',
     blurb: 'The best way to reach me — internships, projects and opportunities.',
   },
@@ -53,7 +53,7 @@ const allSocials: Social[] = [
     label: 'Gmail',
     handle: 'm.ramdin07@gmail.com',
     href: 'mailto:m.ramdin07@gmail.com',
-    sprite: 'mail',
+    icon: 'mail',
     hue: 'peach',
     blurb: 'Drop me an email and I will get back to you.',
   },
@@ -62,7 +62,7 @@ const allSocials: Social[] = [
     label: 'Instagram',
     handle: INSTAGRAM_HANDLE,
     href: INSTAGRAM_URL,
-    sprite: 'instagram',
+    icon: 'instagram',
     hue: 'pink',
     blurb: 'A look at life outside the terminal.',
   },
@@ -71,7 +71,7 @@ const allSocials: Social[] = [
     label: 'GitHub',
     handle: '@Fckmads07',
     href: 'https://github.com/Fckmads07',
-    sprite: 'github',
+    icon: 'github',
     hue: 'mauve',
     blurb: 'Every project, lab and experiment I push.',
   },
@@ -120,33 +120,33 @@ export const fetchGroups: FetchRow[][] = [
 ]
 
 /** What kind of person Madhav is — shown as "Why Madhav?" tiles. */
-export const traits: { sprite: SpriteName; hue: string; title: string; text: string }[] = [
+export const traits: { icon: IconName; hue: string; title: string; text: string }[] = [
   {
-    sprite: 'router',
+    icon: 'router',
     hue: 'cyan',
     title: 'Network-first',
     text: 'Subnets, routing tables and NAT are where I am most at home. I like knowing exactly where every packet goes.',
   },
   {
-    sprite: 'shield',
+    icon: 'shield',
     hue: 'green',
     title: 'Security-minded',
     text: 'I have traced an attack on a compromised server through its logs, and I want to keep learning how to defend systems.',
   },
   {
-    sprite: 'server',
+    icon: 'server',
     hue: 'blue',
     title: 'Systems',
     text: 'Linux, virtual machines and the command line: I like setting things up and seeing how they run.',
   },
   {
-    sprite: 'users',
+    icon: 'users',
     hue: 'peach',
     title: 'Team player',
     text: 'I lead a team at work: reliable, punctual and calm under rush.',
   },
   {
-    sprite: 'dumbbell',
+    icon: 'dumbbell',
     hue: 'yellow',
     title: 'Disciplined',
     text: 'The gym and the pool taught me consistency: show up, track progress, repeat. I bring the same habit to my studies.',
@@ -155,7 +155,7 @@ export const traits: { sprite: SpriteName; hue: string; title: string; text: str
 
 /** Life outside the terminal, shown like processes in `ps`. Edit freely. */
 export const hobbies: {
-  sprite: SpriteName
+  icon: IconName
   hue: string
   process: string
   title: string
@@ -163,7 +163,7 @@ export const hobbies: {
   tags: string[]
 }[] = [
   {
-    sprite: 'car',
+    icon: 'car',
     hue: 'red',
     process: 'cars',
     title: 'Cars',
@@ -171,7 +171,7 @@ export const hobbies: {
     tags: ['engines', 'design', 'motorsport'],
   },
   {
-    sprite: 'swim',
+    icon: 'swim',
     hue: 'sky',
     process: 'swim',
     title: 'Swimming',
@@ -179,7 +179,7 @@ export const hobbies: {
     tags: ['endurance', 'technique'],
   },
   {
-    sprite: 'dumbbell',
+    icon: 'dumbbell',
     hue: 'yellow',
     process: 'gym',
     title: 'The gym',

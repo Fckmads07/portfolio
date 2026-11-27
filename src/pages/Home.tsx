@@ -6,7 +6,7 @@ import { Typewriter } from '../components/Typewriter'
 import { ago, formatDate, github, languageShare, repoByName, repos } from '../data/github'
 import { fetchGroups, fetchLogo, history, hobbies, profile, socialById, techStack, traits } from '../data/profile'
 import { categoryHue, featuredProjects } from '../data/projects'
-import { Sprite } from '../pixel/Sprite'
+import { Icon } from '../icons/Icon'
 import './Home.css'
 
 function Hero() {
@@ -41,12 +41,12 @@ function Hero() {
           </span>
         </Link>
         <Link className="btn" to="/experience">
-          <Sprite name="briefcase" size={16} />
+          <Icon name="briefcase" size={16} />
           Experience
         </Link>
         {github && (
           <a className="btn" href={github.href} target="_blank" rel="noreferrer">
-            <Sprite name="github" size={16} />
+            <Icon name="github" size={16} />
             GitHub
           </a>
         )}
@@ -92,7 +92,7 @@ function Whois() {
             ))}
             <p className="fetch__hobbies" aria-hidden="true">
               {hobbies.map((hobby) => (
-                <Sprite key={hobby.process} name={hobby.sprite} hue={hobby.hue} size={24} />
+                <Icon key={hobby.process} name={hobby.icon} hue={hobby.hue} size={24} />
               ))}
             </p>
           </div>
@@ -113,7 +113,7 @@ function About() {
       <ul className="traits">
         {traits.map((trait) => (
           <li className="trait" key={trait.title}>
-            <Sprite name={trait.sprite} hue={trait.hue} size={40} />
+            <Icon name={trait.icon} hue={trait.hue} size={40} />
             <div>
               <h3 className="trait__title">{trait.title}</h3>
               <p className="trait__text">{trait.text}</p>
@@ -268,7 +268,7 @@ function Featured() {
                   <span className="window__meta">{repo ? `pushed ${ago(repo.pushedAt)}` : project.period}</span>
                 </div>
                 <div className="window__body feature__body">
-                  <Sprite name={project.sprite} hue={categoryHue[project.category]} size={40} />
+                  <Icon name={project.icon} hue={categoryHue[project.category]} size={40} />
                   <h3 className="feature__name">{project.name}</h3>
                   <p className="feature__tagline">{project.tagline}</p>
                   <ul className="tags">
@@ -350,7 +350,7 @@ function OffTheClock() {
               </span>
             </div>
             <div className="hobby__art" aria-hidden="true">
-              <Sprite name={hobby.sprite} hue={hobby.hue} size={96} className={`hobby__sprite hobby__sprite--${hobby.process}`} />
+              <Icon name={hobby.icon} hue={hobby.hue} size={96} className={`hobby__icon hobby__icon--${hobby.process}`} />
             </div>
             <div className="window__body hobby__body">
               <h3 className="hobby__title">{hobby.title}</h3>

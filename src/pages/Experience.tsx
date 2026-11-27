@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { Prompt, SectionHead } from '../components/Prompt'
 import { jobs } from '../data/experience'
 import { profile, socialById } from '../data/profile'
-import { Sprite } from '../pixel/Sprite'
+import { Icon } from '../icons/Icon'
 import './Experience.css'
 
 const current = jobs.find((job) => job.current)
@@ -39,7 +39,7 @@ export default function Experience() {
                 </div>
 
                 <div className="window__body job__body">
-                  <Sprite name={job.sprite} hue={job.current ? 'peach' : 'blue'} size={56} className="job__sprite" />
+                  <Icon name={job.icon} hue={job.current ? 'peach' : 'blue'} size={56} className="job__icon" />
                   <div className="job__main">
                     <h3 className="job__role">{job.role}</h3>
                     <p className="job__company">
@@ -115,13 +115,13 @@ export default function Experience() {
                 <div className="next__actions">
                   {linkedin && (
                     <a className="btn btn--primary btn--sm" href={linkedin.href} target="_blank" rel="noreferrer">
-                      <Sprite name="linkedin" size={14} />
+                      <Icon name="linkedin" size={14} />
                       LinkedIn
                     </a>
                   )}
                   {gmail && (
                     <a className="btn btn--sm" href={gmail.href}>
-                      <Sprite name="mail" size={14} />
+                      <Icon name="mail" size={14} />
                       Email me
                     </a>
                   )}
