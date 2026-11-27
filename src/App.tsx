@@ -1,15 +1,17 @@
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import { Bar } from './components/Bar'
+import { BootScreen } from './components/BootScreen'
 import { Footer } from './components/Footer'
 import { WORKSPACES } from './data/nav'
+import type { ThemeId } from './data/themes'
+import { useBoot } from './hooks/useBoot'
 import { useHotkeys } from './hooks/useHotkeys'
 import { useTheme } from './hooks/useTheme'
 import Experience from './pages/Experience'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import Projects from './pages/Projects'
-import { PixelField } from './pixel/PixelField'
 
 const titles: Record<string, string> = {
   '/': 'Madhav Ramdin · Portfolio',
@@ -36,30 +38,46 @@ function useRouteEffects() {
 
 export default function App() {
   const { theme, setTheme, cycle } = useTheme()
+  const { showBoot, motionOff, finishBoot, reboot } = useBoot()
   const navigate = useNavigate()
   useRouteEffects()
 
-  useHotkeys({
-    ...Object.fromEntries(WORKSPACES.map((workspace) => [workspace.key, () => navigate(workspace.to)])),
-    t: cycle,
-  })
+  // Shortcuts are off while the boot menu is open, so its arrow keys and Enter work alone.
+  useHotkeys(
+    showBoot
+      ? {}
+      : {
+          ...Object.fromEntries(WORKSPACES.map((workspace) => [workspace.key, () => navigate(workspace.to)])),
+          t: cycle,
+        },
+  )
+
+  const onBoot = useCallback(
+    (entry: { theme: ThemeId; motionOff: boolean }) => {
+      setTheme(entry.theme)
+      finishBoot(entry.motionOff)
+    },
+    [setTheme, finishBoot],
+  )
 
   return (
-    <div className="shell">
-      <a href="#main" className="skip-link">
-        Skip to content
-      </a>
-      <PixelField theme={theme} />
-      <Bar theme={theme} onSelectTheme={setTheme} />
-      <main className="page" id="main" tabIndex={-1}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/experience" element={<Experience />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
-      <Footer />
-    </div>
+    <>
+      {showBoot && <BootScreen theme={theme} motionOff={motionOff} onBoot={onBoot} />}
+      <div className="shell" inert={showBoot}>
+        <a href="#main" className="skip-link">
+          Skip to content
+        </a>
+        <Bar theme={theme} onSelectTheme={setTheme} onReboot={reboot} />
+        <main className="page" id="main" tabIndex={-1}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/experience" element={<Experience />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </>
   )
 }

@@ -6,7 +6,6 @@ import { Typewriter } from '../components/Typewriter'
 import { ago, formatDate, github, languageShare, repoByName, repos } from '../data/github'
 import { fetchGroups, fetchLogo, history, hobbies, profile, socialById, techStack, traits } from '../data/profile'
 import { categoryHue, featuredProjects } from '../data/projects'
-import { PixelText } from '../pixel/PixelText'
 import { Sprite } from '../pixel/Sprite'
 import './Home.css'
 
@@ -24,10 +23,9 @@ function Hero() {
         </a>
       )}
 
-      <h1 className="hero__title" id="hero-title">
-        <span className="sr-only">{profile.name}</span>
-        <PixelText text="MADHAV" shadow tracking={2} animate />
-        <PixelText text="RAMDIN" shadow tracking={2} animate />
+      <Prompt command="whoami" />
+      <h1 className="hero__title cursor" id="hero-title">
+        {profile.firstName} <span className="hero__title-last">{profile.name.replace(`${profile.firstName} `, '')}</span>
       </h1>
 
       <p className="hero__tagline">
@@ -225,10 +223,7 @@ function Live() {
               </span>
             </div>
             <div className="window__body">
-              <p className="stat__value">
-                <span className="sr-only">{tile.value} </span>
-                <PixelText text={tile.value} shadow />
-              </p>
+              <p className="stat__value">{tile.value}</p>
               <p className="stat__label">{tile.label}</p>
               <p className="stat__text">{tile.text}</p>
             </div>
@@ -238,7 +233,7 @@ function Live() {
 
       {last && (
         <p className="live__last">
-          <span className="prompt__char">❯</span> last push: <a className="link" href={last.url} target="_blank" rel="noreferrer">{last.name}</a>,{' '}
+          <span className="prompt__char" aria-hidden="true" /> last push: <a className="link" href={last.url} target="_blank" rel="noreferrer">{last.name}</a>,{' '}
           {ago(last.pushedAt)}
         </p>
       )}
