@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react'
 import { socials } from '../data/profile'
-import { Sprite } from '../pixel/Sprite'
+import { Icon } from '../icons/Icon'
 import './Socials.css'
 
 /** One tile per social link, each in its own hue. */
@@ -18,7 +18,7 @@ export function Socials() {
               {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}
             >
               <span className="social__icon">
-                <Sprite name={social.sprite} size={36} />
+                <Icon name={social.icon} size={36} />
               </span>
               <span className="social__text">
                 <span className="social__label">{social.label}</span>

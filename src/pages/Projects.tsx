@@ -13,7 +13,7 @@ import {
   type Category,
   type Project,
 } from '../data/projects'
-import { Sprite } from '../pixel/Sprite'
+import { Icon } from '../icons/Icon'
 import './Projects.css'
 
 type Filter = 'All' | Category
@@ -45,14 +45,14 @@ function NetsecLabs() {
               <span className="window__title">{lab.code}</span>
               <span className="window__meta">
                 <span className="state">
-                  <Sprite name="lock" size={12} />
+                  <Icon name="lock" size={12} />
                   private
                 </span>
               </span>
             </div>
             <div className="window__body netsec__body">
               <div className="netsec__head">
-                <Sprite name={lab.sprite} hue={lab.hue} size={48} />
+                <Icon name={lab.icon} hue={lab.hue} size={48} />
                 <div>
                   <h3 className="netsec__title">{lab.title}</h3>
                   <p className="netsec__text">{lab.text}</p>
@@ -95,7 +95,7 @@ function ProjectWindow({ project }: { project: Project }) {
 
       <div className="window__body project__body">
         <div className="project__head">
-          <Sprite name={project.sprite} hue={hue} size={48} />
+          <Icon name={project.icon} hue={hue} size={48} />
           <div>
             <h3 className="project__name">{project.name}</h3>
             <p className="project__tagline">{project.tagline}</p>
@@ -266,7 +266,7 @@ export default function Projects() {
                 <span className="window__meta">private</span>
               </div>
               <div className="window__body lab__body">
-                <Sprite name={course.sprite} hue={course.hue} size={36} />
+                <Icon name={course.icon} hue={course.hue} size={36} />
                 <div>
                   <h3 className="lab__title">{course.title}</h3>
                   <p className="lab__text">{course.text}</p>
@@ -291,7 +291,7 @@ export default function Projects() {
                 <p className="remote__text">Every lab, experiment and work in progress is on my GitHub.</p>
               </div>
               <a className="btn btn--primary" href={github.href} target="_blank" rel="noreferrer">
-                <Sprite name="github" size={16} />
+                <Icon name="github" size={16} />
                 github.com/{github.handle.slice(1)}
               </a>
             </div>

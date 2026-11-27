@@ -1,6 +1,6 @@
 import { formatDate, github } from '../data/github'
 import { profile, socials } from '../data/profile'
-import { Sprite } from '../pixel/Sprite'
+import { Icon } from '../icons/Icon'
 import './Footer.css'
 
 const YEAR = new Date().getFullYear()
@@ -9,15 +9,15 @@ export function Footer() {
   return (
     <footer className="footer">
       <div className="footer__road" aria-hidden="true">
-        <Sprite name="car" hue="red" size={36} className="footer__car" />
+        <Icon name="car" hue="red" size={36} className="footer__car" />
       </div>
       <div className="footer__inner">
         <p className="footer__keys">
-          <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> switch workspace
+          <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> switch page
           <span className="footer__sep" aria-hidden="true">
             ·
           </span>
-          <kbd>t</kbd> next theme
+          <kbd>t</kbd> next skin
         </p>
 
         <ul className="footer__links">

@@ -391,13 +391,13 @@ button {
 }
 
 .window__title {
-  margin-right: auto;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .window__meta {
+  margin-left: auto;
   flex-shrink: 0;
   white-space: nowrap;
 }
@@ -408,11 +408,16 @@ button {
   flex: none;
   width: 44px;
   height: 12px;
-  margin-left: 4px;
+  margin-left: auto;
   background:
     radial-gradient(circle, var(--surface2) 4.5px, transparent 5px) 0 0 / 12px 12px no-repeat,
     radial-gradient(circle, var(--surface2) 4.5px, transparent 5px) 16px 0 / 12px 12px no-repeat,
     radial-gradient(circle, color-mix(in srgb, var(--red) 75%, var(--surface2)) 4.5px, transparent 5px) 32px 0 / 12px 12px no-repeat;
+}
+
+/* With a meta label, the label takes the free space and the buttons sit right after it. */
+.window__bar:has(> .window__meta)::after {
+  margin-left: 4px;
 }
 
 .window__body {
@@ -510,6 +515,10 @@ kbd {
   font-size: 12px;
   line-height: 1.6;
   text-align: center;
+}
+
+.icon {
+  flex-shrink: 0;
 }
 
 .dot {

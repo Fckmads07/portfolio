@@ -519,17 +519,17 @@
   font-size: 14px;
 }
 
-/* Each sprite moves a little, in whole-pixel steps. */
-.hobby__sprite--cars {
-  animation: drive 2.4s steps(6, end) infinite alternate;
+/* Each icon moves a little. */
+.hobby__icon--cars {
+  animation: drive 2.4s ease-in-out infinite alternate;
 }
 
-.hobby__sprite--swim {
-  animation: bob 1.6s steps(2, end) infinite;
+.hobby__icon--swim {
+  animation: bob 1.8s ease-in-out infinite;
 }
 
-.hobby__sprite--gym {
-  animation: lift 1.4s steps(2, end) infinite;
+.hobby__icon--gym {
+  animation: lift 1.4s ease-in-out infinite;
 }
 
 @keyframes drive {
