@@ -8,18 +8,19 @@ export interface Theme {
   swatch: readonly [string, string, string, string]
 }
 
-/** Every theme, in the order the `t` key cycles through them. */
+/**
+ * The OS skins, in the order the `t` key cycles through them. The colors, fonts
+ * and the shell prompt for each one live in styles/theme.css.
+ */
 export const THEMES = [
-  { id: 'noc', name: 'NOC', note: 'navy and cyan', swatch: ['#0b1120', '#22d3ee', '#60a5fa', '#4ade80'] },
-  { id: 'soc', name: 'SOC', note: 'phosphor green', swatch: ['#090d0a', '#4ade80', '#86efac', '#fde047'] },
-  { id: 'red-team', name: 'Red team', note: 'charcoal and red', swatch: ['#110d10', '#f87171', '#fca5a5', '#fbbf24'] },
-  { id: 'daylight', name: 'Daylight', note: 'light, for reading', swatch: ['#f6f8fb', '#0e7490', '#1d4ed8', '#15803d'] },
-  { id: 'parrot', name: 'Parrot', note: 'the original look', swatch: ['#0a0118', '#00fff0', '#4d9fff', '#5cffa1'] },
+  { id: 'kali', name: 'Kali', note: 'blue, user session', swatch: ['#0f1218', '#4d8bf5', '#8fb6ff', '#4cd388'] },
+  { id: 'kali-root', name: 'Kali root', note: 'red, root session', swatch: ['#130f11', '#f25c5c', '#ff9b9b', '#f5c451'] },
+  { id: 'parrot', name: 'Parrot', note: 'teal, Parrot skin', swatch: ['#07161b', '#1bd6c8', '#ff4b55', '#ffd23f'] },
 ] as const satisfies readonly Theme[]
 
 export type ThemeId = (typeof THEMES)[number]['id']
 
-export const DEFAULT_THEME: ThemeId = 'noc'
+export const DEFAULT_THEME: ThemeId = 'kali'
 
 export function findTheme(id: string): Theme {
   return THEMES.find((theme) => theme.id === id) ?? THEMES[0]

@@ -13,7 +13,6 @@ import {
   type Category,
   type Project,
 } from '../data/projects'
-import { PixelText } from '../pixel/PixelText'
 import { Sprite } from '../pixel/Sprite'
 import './Projects.css'
 
@@ -235,10 +234,7 @@ export default function Projects() {
     <>
       <header className="page-head">
         <Prompt dir="~/projects" command="ls" />
-        <h1 className="page-head__title">
-          <span className="sr-only">Projects</span>
-          <PixelText text="PROJECTS" shadow tracking={2} animate />
-        </h1>
+        <h1 className="page-head__title cursor">Projects</h1>
         <p className="page-head__lead">
           Network and security labs first, then the things I've built, then everything on my GitHub — kept up to date
           automatically.

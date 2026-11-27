@@ -53,8 +53,8 @@ export function ThemeMenu({ theme, onSelect }: ThemeMenuProps) {
         onClick={() => setOpen((value) => !value)}
         aria-expanded={open}
         aria-controls={panelId}
-        aria-label={`Theme: ${current.name}. Change theme`}
-        title="Change theme (t for the next one)"
+        aria-label={`Skin: ${current.name}. Change skin`}
+        title="Change skin (t for the next one)"
       >
         <span className="theme-menu__swatch" aria-hidden="true">
           <i style={{ background: 'var(--accent)' }} />
@@ -62,13 +62,13 @@ export function ThemeMenu({ theme, onSelect }: ThemeMenuProps) {
           <i style={{ background: 'var(--green)' }} />
           <i style={{ background: 'var(--yellow)' }} />
         </span>
-        <span className="theme-menu__name">theme: {current.name.toLowerCase()}</span>
+        <span className="theme-menu__name">skin: {current.name.toLowerCase()}</span>
       </button>
 
       {open && (
         <div className="theme-menu__panel" id={panelId} onKeyDown={onPanelKeyDown}>
           <p className="theme-menu__heading" aria-hidden="true">
-            Theme
+            Skin
           </p>
           {THEMES.map((option) => (
             <button

@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom'
 import { Prompt, SectionHead } from '../components/Prompt'
 import { jobs } from '../data/experience'
 import { profile, socialById } from '../data/profile'
-import { PixelText } from '../pixel/PixelText'
 import { Sprite } from '../pixel/Sprite'
 import './Experience.css'
 
@@ -16,10 +15,7 @@ export default function Experience() {
     <>
       <header className="page-head">
         <Prompt dir="~/experience" command="cat jobs.log" />
-        <h1 className="page-head__title">
-          <span className="sr-only">Experience</span>
-          <PixelText text="EXPERIENCE" shadow tracking={2} animate />
-        </h1>
+        <h1 className="page-head__title cursor">Experience</h1>
         <p className="page-head__lead">
           Where I've worked so far — the jobs that taught me teamwork, responsibility and how to learn fast.
         </p>

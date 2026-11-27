@@ -17,8 +17,7 @@ function readStored(): ThemeId {
 export function useTheme() {
   const [theme, setTheme] = useState<ThemeId>(readStored)
 
-  // A layout effect, so the attribute is set before child effects
-  // (the pixel field) read the theme's colors back from CSS.
+  // A layout effect, so the attribute is set before the first paint.
   useLayoutEffect(() => {
     document.documentElement.dataset.theme = theme
     try {

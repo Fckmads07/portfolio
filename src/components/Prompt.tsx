@@ -1,18 +1,35 @@
 import type { ReactNode } from 'react'
 
 interface PromptProps {
-  /** Working directory shown before the prompt character. */
+  /** Working directory shown in the prompt. */
   dir?: string
   command: string
 }
 
-/** A shell prompt line: `~/projects ❯ ls`. Used as the eyebrow above headings. */
+/**
+ * A two-line shell prompt, used as the eyebrow above headings:
+ *
+ *   ┌──(madhav㉿kali)-[~/projects]
+ *   └─$ ls
+ *
+ * The frame, user, host and $ sign come from CSS variables set by the active
+ * skin (styles/theme.css), so Kali, Kali root and Parrot each get their own.
+ */
 export function Prompt({ dir = '~', command }: PromptProps) {
   return (
     <p className="prompt" aria-hidden="true">
-      <span className="prompt__dir">{dir}</span>
-      <span className="prompt__char">❯</span>
-      <span className="prompt__cmd">{command}</span>
+      <span className="prompt__line">
+        <span className="prompt__frame prompt__frame--open" />
+        <span className="prompt__id" />
+        <span className="prompt__frame prompt__frame--mid" />
+        <span className="prompt__dir">{dir}</span>
+        <span className="prompt__frame prompt__frame--close" />
+      </span>
+      <span className="prompt__line">
+        <span className="prompt__frame prompt__frame--tail" />
+        <span className="prompt__sign" />
+        <span className="prompt__cmd">{command}</span>
+      </span>
     </p>
   )
 }

@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { formatShort, github } from '../data/github'
 import { WORKSPACES } from '../data/nav'
-import { profile, socialById } from '../data/profile'
+import { socialById } from '../data/profile'
 import type { ThemeId } from '../data/themes'
-import { PixelText } from '../pixel/PixelText'
 import { Sprite } from '../pixel/Sprite'
+import { AppMenu } from './AppMenu'
 import { ThemeMenu } from './ThemeMenu'
 import './Bar.css'
 
@@ -35,19 +35,18 @@ function Clock() {
 interface BarProps {
   theme: ThemeId
   onSelectTheme: (theme: ThemeId) => void
+  onReboot: () => void
 }
 
-/** The top bar, laid out like a tiling-WM status bar: workspaces, clock, tray. */
-export function Bar({ theme, onSelectTheme }: BarProps) {
+/** The top panel, laid out like Kali's Xfce panel: applications menu, task buttons, clock, tray. */
+export function Bar({ theme, onSelectTheme, onReboot }: BarProps) {
   const githubLink = socialById('github')
   const linkedin = socialById('linkedin')
 
   return (
     <header className="bar">
       <div className="bar__inner">
-        <Link to="/" className="bar__logo" aria-label={`${profile.name}, home`}>
-          <PixelText text="MR" />
-        </Link>
+        <AppMenu onReboot={onReboot} />
 
         <nav className="bar__nav" aria-label="Main">
           {WORKSPACES.map((workspace) => (
@@ -56,10 +55,8 @@ export function Bar({ theme, onSelectTheme }: BarProps) {
               to={workspace.to}
               end={workspace.to === '/'}
               className={({ isActive }) => `bar__link${isActive ? ' is-active' : ''}`}
+              title={`${workspace.label} (press ${workspace.key})`}
             >
-              <span className="bar__key" aria-hidden="true">
-                {workspace.key}
-              </span>
               {workspace.label}
             </NavLink>
           ))}
